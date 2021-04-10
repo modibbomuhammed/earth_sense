@@ -39,9 +39,9 @@ const App: React.FC = () => {
   const filterByType = (e: React.ChangeEvent<HTMLSelectElement>): void => {
     const type = e.target.value;
     const copy = [...zephyrs];
-    if (type === "all") {
+    if (type === "All") {
       setCurrentZephyr(defaultState);
-    } else if (type === "standard") {
+    } else if (type === "Standard") {
       setCurrentZephyr(copy.filter(({ type }) => type === "Standard"));
     } else {
       setCurrentZephyr(copy.filter(({ type }) => type === "Enhanced"));
@@ -87,9 +87,11 @@ const App: React.FC = () => {
             className="form-control"
             onChange={filterByType}
           >
-            <option value="all">All</option>
-            <option value="standard">Standard</option>
-            <option value="enhanced">Enhanced</option>
+            {["All", "Standard", "Enhanced"].map((val, index) => (
+              <option value={val} key={index}>
+                {val}
+              </option>
+            ))}
           </select>
         </div>
       </form>
